@@ -1,0 +1,41 @@
+{
+  "name": "com.rmc.rmc-words",
+  "displayName": "RMC Words",
+  "version": "0.0.1",
+  "unity": "2021.3",
+  "description": "Word Game library for Unity Development by Rivello Multimedia Consulting.",
+  "keywords": [
+	"unity",
+	"unity3d",
+	"rmc",
+	"upm",
+	"package",
+	"template",
+	"words",
+	"dictionary",
+	"utility"
+  ],
+  "dependencies": {
+	"com.rmc.rmc-readme" : "1.2.2" 
+  },
+  "homepage": "https://github.com/samuelasherrivello/rmc-words.git",
+  "bugs": {
+	"url": "https://github.com/samuelasherrivello/rmc-words/issues"
+  },
+  "repository": {
+	"type": "git",
+	"url": "git+ssh://git@github.com/samuelasherrivello/rmc-words.git"
+  },
+  "license": "MIT",
+  "author": "rmc (github.com/SamuelAsherRivello)",
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "samples": [
+    {
+	"displayName": "RMC Words Sample",
+	"description": "Demonstrate the RMC Words library.",
+	"path": "RMC Words/Samples~/RMC Words Sample"
+    }
+  ]
+}
