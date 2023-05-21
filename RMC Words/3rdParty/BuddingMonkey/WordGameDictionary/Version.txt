@@ -1,0 +1,5 @@
+Source Url: 
+* https://github.com/buddingmonkey/WordGameDictionary/
+
+Changelog: 
+* Moved to /Assets/3rdParty/
