@@ -1,0 +1,14 @@
+{
+    "name": "RMC.Words.Runtime",
+    "rootNamespace": "RMC.Words",
+    "references": ["GUID:460598bfa2e447e18242ce58ea1a77a5"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
