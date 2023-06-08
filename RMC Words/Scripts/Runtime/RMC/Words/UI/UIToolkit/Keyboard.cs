@@ -31,8 +31,6 @@ namespace RMC.Words.UI.UIToolkit
                 Keyboard keyboard = rootVisualElement.Q<Keyboard>();
                 keyboard.ResetKeyboard();
                 
-
-                
                 return rootVisualElement;
             }
         }

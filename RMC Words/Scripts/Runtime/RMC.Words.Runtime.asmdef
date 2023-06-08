@@ -1,7 +1,10 @@
 {
     "name": "RMC.Words.Runtime",
     "rootNamespace": "RMC.Words",
-    "references": ["GUID:460598bfa2e447e18242ce58ea1a77a5"],
+    "references": [
+        "GUID:460598bfa2e447e18242ce58ea1a77a5",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
