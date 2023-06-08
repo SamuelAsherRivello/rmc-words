@@ -96,7 +96,7 @@ namespace RMC.Words.UI.UIToolkit
                 keyboardKeys[19].PopulateKey(new KeyboardKeyData(KeyCode.None)); 
 
                 //Row 3
-                keyboardKeys[20].PopulateKey(new KeyboardKeyData(KeyCode.KeypadEnter, "Ent"));
+                keyboardKeys[20].PopulateKey(new KeyboardKeyData(KeyCode.Delete, "Delete", Color.red));
                 keyboardKeys[21].PopulateKey(new KeyboardKeyData(KeyCode.Z)); 
                 keyboardKeys[22].PopulateKey(new KeyboardKeyData(KeyCode.X)); 
                 keyboardKeys[23].PopulateKey(new KeyboardKeyData(KeyCode.C)); 
@@ -104,7 +104,7 @@ namespace RMC.Words.UI.UIToolkit
                 keyboardKeys[25].PopulateKey(new KeyboardKeyData(KeyCode.B)); 
                 keyboardKeys[26].PopulateKey(new KeyboardKeyData(KeyCode.N)); 
                 keyboardKeys[27].PopulateKey(new KeyboardKeyData(KeyCode.M));
-                keyboardKeys[28].PopulateKey(new KeyboardKeyData(KeyCode.Delete, "Del"));
+                keyboardKeys[28].PopulateKey(new KeyboardKeyData(KeyCode.KeypadEnter, "Enter", Color.green));
                 keyboardKeys[29].PopulateKey(new KeyboardKeyData(KeyCode.None)); 
             }
 
