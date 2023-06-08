@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Packages/com.rmc.rmc-words/RMC%20Words/UIToolkit/Resources/Uss/KeyboardStyles.uss?fileID=7433441132597879392&amp;guid=733f3be99a7932847975e68d2b751a86&amp;type=3#KeyboardStyles" />
-    <ui:VisualElement name="Content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;">
-        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+    <ui:VisualElement name="Content" class="Content">
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow">
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
@@ -13,7 +13,7 @@
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
         </ui:VisualElement>
-        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow">
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
@@ -25,7 +25,7 @@
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
         </ui:VisualElement>
-        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow">
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
             <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />

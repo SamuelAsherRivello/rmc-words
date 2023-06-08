@@ -5,9 +5,29 @@ using UnityEngine.UIElements;
 namespace RMC.Words.UI.UIToolkit
 {
     //  Internal Classes ----------------------------------
+    
     /// <summary>
     /// 
     /// </summary>
+    public class KeyboardKeyData
+    {
+        public KeyCode KeyCode { get; private set; }
+        public string LabelText { get; private set; }
+        
+        public KeyboardKeyData(KeyCode keyCode)
+        {
+            KeyCode = keyCode;
+            LabelText = KeyCode.ToString().ToUpper();
+        }
+        public KeyboardKeyData(KeyCode keyCode, string labelText)
+        {
+            KeyCode = keyCode;
+            LabelText = labelText;
+        }
+    }
+    
+    
+
     public class KeyboardKeyUnityEvent : UnityEvent<KeyboardKey>{}
     
     /// <summary>
@@ -135,6 +155,26 @@ namespace RMC.Words.UI.UIToolkit
         //  Methods ---------------------------------------
         
         //  Event Handlers --------------------------------
+        public void PopulateKey(KeyboardKeyData keyboardKeyData)
+        {
+            KeyCode = keyboardKeyData.KeyCode;
+            LabelText = keyboardKeyData.LabelText;
+            
+            if (keyboardKeyData.KeyCode == KeyCode.None)
+            {
+                //Sometimes remove key
+                LabelText = "";
+                style.display = DisplayStyle.None;
+            }
+            else
+            {
+                style.display = DisplayStyle.Flex;
+          
+            }
+
+  
+        }
+        
         public void ResetKey()
         {
             //Don't change label here. That should be set elsewhere

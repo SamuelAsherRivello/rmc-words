@@ -1,11 +1,6 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" 
-         xmlns:uie="UnityEditor.UIElements" 
-         xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         engine="UnityEngine.UIElements" 
-         editor="UnityEditor.UIElements" 
-         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" 
-         editor-extension-mode="False">
-    <ui:VisualElement name="Content" style="flex-basis: auto; display: flex; visibility: visible; justify-content: center; align-self: center; align-items: center; font-size: 81px; flex-grow: 1; background-color: rgb(58, 58, 60); -unity-background-scale-mode: stretch-to-fill; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
-        <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="flex-grow: 1; flex-shrink: 1; font-size: 40px; -unity-text-align: middle-center; flex-basis: 100%; align-items: center; justify-content: center; align-self: center; color: rgb(255, 255, 255); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Samples2/Wordle/Art/Fonts/AnderHedge/Ander%20Hedge.ttf?fileID=12800000&amp;guid=528a077931aa745d3bf57631443791ba&amp;type=3#Ander Hedge&apos;); -unity-font-definition: initial;" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/KeyboardKeyStyles.uss?fileID=7433441132597879392&amp;guid=a69b5a418eb17194e9e39d19279bdc9e&amp;type=3#KeyboardKeyStyles" />
+    <ui:VisualElement name="Content" class="Content">
+        <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" name="Label" class="Label" />
     </ui:VisualElement>
 </ui:UXML>
