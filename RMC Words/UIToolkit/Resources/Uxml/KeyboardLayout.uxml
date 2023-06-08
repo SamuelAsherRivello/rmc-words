@@ -1,43 +1,41 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Samples2/RMC%20Words/UIToolkit/Resources/Uss/KeyboardStyles.uss?fileID=7433441132597879392&amp;guid=733f3be99a7932847975e68d2b751a86&amp;type=3#KeyboardStyles" />
+    <Style src="project://database/Packages/com.rmc.rmc-words/RMC%20Words/UIToolkit/Resources/Uss/KeyboardStyles.uss?fileID=7433441132597879392&amp;guid=733f3be99a7932847975e68d2b751a86&amp;type=3#KeyboardStyles" />
     <ui:VisualElement name="Content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;">
-        <ui:VisualElement name="Table" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-            <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Q" Label="Q" name="Q" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="W" Label="W" name="W" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="E" Label="E" name="E" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="R" Label="R" name="R" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="T" Label="T" name="T" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Y" Label="Y" name="Y" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="U" Label="U" name="U" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="I" Label="I" name="I" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="O" Label="O" name="O" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="P" Label="P" name="P" class="KeyboardKey" />
-            </ui:VisualElement>
-            <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="A" Label="A" name="A" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="S" Label="S" name="S" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="D" Label="D" name="D" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="F" Label="F" name="F" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="G" Label="G" name="G" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="H" Label="H" name="H" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="J" Label="J" name="J" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="K" Label="K" name="K" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="L" Label="L" name="X" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Clear" Label=" " name="X" class="KeyboardKey" />
-            </ui:VisualElement>
-            <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Z" Label="Z" name="Z" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="X" Label="X" name="X" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="C" Label="C" name="C" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="V" Label="V" name="V" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="B" Label="B" name="B" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="N" Label="N" name="N" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="M" Label="M" name="M" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Clear" Label=" " name="X" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Clear" Label=" " name="X" class="KeyboardKey" />
-                <RMC.Words.UI.UIToolkit.KeyboardKeyVisualElement KeyCode="Clear" Label=" " name="X" class="KeyboardKey" />
-            </ui:VisualElement>
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+        </ui:VisualElement>
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+        </ui:VisualElement>
+        <ui:VisualElement name="KeyboardRow" class="KeyboardRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
+            <RMC.Words.UI.UIToolkit.KeyboardKey class="KeyboardKey" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

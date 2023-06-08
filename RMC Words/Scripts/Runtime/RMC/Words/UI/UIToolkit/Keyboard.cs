@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,7 +7,7 @@ namespace RMC.Words.UI.UIToolkit
     /// <summary>
     /// 
     /// </summary>
-    public sealed class KeyboardVisualElement : VisualElement
+    public sealed class Keyboard : VisualElement
     {
         //  Internal Classes ----------------------------------
 
@@ -18,7 +19,7 @@ namespace RMC.Words.UI.UIToolkit
         /// <summary>
         /// 
         /// </summary>
-        public new class UxmlFactory : UxmlFactory<KeyboardVisualElement, UxmlTraits>
+        public new class UxmlFactory : UxmlFactory<Keyboard, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
             {
@@ -26,24 +27,19 @@ namespace RMC.Words.UI.UIToolkit
                 VisualElement rootVisualElement = base.Create(bag, cc);
                 visualTreeAsset.CloneTree(rootVisualElement);
 
-                KeyboardVisualElement keyboardVisualElement = rootVisualElement.Q<KeyboardVisualElement>();
+                Keyboard keyboard = rootVisualElement.Q<Keyboard>();
+                keyboard.ResetKeyboard();
+                
 
-                //TODO: can I bubbled up instead of catch/release/catch/etc... here...?
-                UQueryBuilder<KeyboardKeyVisualElement> x = keyboardVisualElement.Query<KeyboardKeyVisualElement>();
-                x.ForEach((element =>
-                {
-                    element.OnKeyboardKeyPressed.AddListener(keyboardKeyVisualElement => 
-                    {
-                        keyboardVisualElement.OnKeyboardKeyPressed.Invoke(keyboardKeyVisualElement);
-                    });
-                }));
                 
                 return rootVisualElement;
             }
         }
-        
+
+
+
         //  Events ----------------------------------------
-        public KeyboardKeyVisualElement.KeyboardKeyVisualElementUnityEvent OnKeyboardKeyPressed = new KeyboardKeyVisualElement.KeyboardKeyVisualElementUnityEvent();
+        public KeyboardKeyUnityEvent OnKeyboardKeyPressed = new KeyboardKeyUnityEvent();
 
 
         //  Properties ------------------------------------
@@ -56,7 +52,21 @@ namespace RMC.Words.UI.UIToolkit
 
 
         //  Methods ---------------------------------------
-
+        private void ResetKeyboard()
+        {
+            UQueryBuilder<KeyboardKey> uQueryBuilder = this.Query<KeyboardKey>();
+            List<KeyboardKey> keyboardKeys = uQueryBuilder.ToList();
+            foreach (KeyboardKey keyboardKey in keyboardKeys)
+            {
+                keyboardKey.ResetKey();
+                
+                //TODO: Can I bubble up the key event to the game without trapping+passing here?
+                keyboardKey.OnKeyboardKeyPressed.AddListener(keyboardKeyVisualElement => 
+                {
+                    OnKeyboardKeyPressed.Invoke(keyboardKey);
+                });
+            }
+        }
 
         //  Event Handlers --------------------------------
  

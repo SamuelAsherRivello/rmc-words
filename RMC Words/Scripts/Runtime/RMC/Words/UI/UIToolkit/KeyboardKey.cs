@@ -5,16 +5,20 @@ using UnityEngine.UIElements;
 namespace RMC.Words.UI.UIToolkit
 {
     //  Internal Classes ----------------------------------
-
     /// <summary>
     /// 
     /// </summary>
-    public sealed class KeyboardKeyVisualElement : VisualElement
+    public class KeyboardKeyUnityEvent : UnityEvent<KeyboardKey>{}
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public sealed class KeyboardKey : VisualElement
     {
         /// <summary>
         /// 
         /// </summary>
-        public new class UxmlFactory : UxmlFactory<KeyboardKeyVisualElement, UxmlTraits> {}
+        public new class UxmlFactory : UxmlFactory<KeyboardKey, UxmlTraits> {}
 
         /// <summary>
         /// 
@@ -27,8 +31,8 @@ namespace RMC.Words.UI.UIToolkit
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
-                (ve as KeyboardKeyVisualElement).LabelText = _label.GetValueFromBag(bag, cc);
-                (ve as KeyboardKeyVisualElement).KeyCode = _keyCode.GetValueFromBag(bag, cc);
+                (ve as KeyboardKey).LabelText = _label.GetValueFromBag(bag, cc);
+                (ve as KeyboardKey).KeyCode = _keyCode.GetValueFromBag(bag, cc);
             }
         }
         
@@ -85,13 +89,12 @@ namespace RMC.Words.UI.UIToolkit
         }
         
         //  Events ----------------------------------------
-
-        public class KeyboardKeyVisualElementUnityEvent : UnityEvent<KeyboardKeyVisualElement>{}
-        public KeyboardKeyVisualElementUnityEvent OnKeyboardKeyPressed = new KeyboardKeyVisualElementUnityEvent();
+        public KeyboardKeyUnityEvent OnKeyboardKeyPressed = new KeyboardKeyUnityEvent();
 
         //  Properties ------------------------------------
         //TODO: Make a template for visual element subclasses like this
-        public string LabelText  {
+        public string LabelText  
+        {
             get
             {
                 return _labelText;
@@ -112,7 +115,7 @@ namespace RMC.Words.UI.UIToolkit
         private readonly Label _label;
         
         //  Initialization --------------------------------
-        public KeyboardKeyVisualElement()
+        public KeyboardKey()
         {
             VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("Uxml/KeyboardKeyLayout");
             visualTreeAsset.CloneTree(this);
@@ -123,6 +126,8 @@ namespace RMC.Words.UI.UIToolkit
             });
         
             _label = this.Q<Label>();
+            
+            //TODO: Do we like my idea that EVERY UI Component has "Content" as first child? Yes?
             VisualElement content = this.Q<VisualElement>("Content");
             content.AddManipulator(new KeyboardKeyManipulator());
         }
@@ -130,5 +135,10 @@ namespace RMC.Words.UI.UIToolkit
         //  Methods ---------------------------------------
         
         //  Event Handlers --------------------------------
+        public void ResetKey()
+        {
+            //Don't change label here. That should be set elsewhere
+            //DO set color to default bg (not 'right' or 'wrong' color)
+        }
     }
 }
