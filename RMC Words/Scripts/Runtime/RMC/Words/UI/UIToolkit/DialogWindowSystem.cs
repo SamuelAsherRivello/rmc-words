@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace RMC.Words.UI.UIToolkit
@@ -6,9 +7,11 @@ namespace RMC.Words.UI.UIToolkit
     /// <summary>
     /// 
     /// </summary>
-    public sealed class DialogWindowSystem : VisualElement
+    public sealed class DialogWindowSystem : CustomVisualElement
     {
         //  Internal Classes ----------------------------------
+        public class DialogWindowSystemUnityEvent : UnityEvent<DialogWindowSystem>{}
+
 
         /// <summary>
         /// 
@@ -33,49 +36,66 @@ namespace RMC.Words.UI.UIToolkit
             }
         }
 
-
-
         //  Events ----------------------------------------
-
+        public readonly DialogWindowSystemUnityEvent OnShowDialogWindow = new DialogWindowSystemUnityEvent();
+        public readonly DialogWindowSystemUnityEvent OnHideDialogWindow = new DialogWindowSystemUnityEvent();
 
         //  Properties ------------------------------------
         public DialogWindowBase DialogWindowCurrent { get { return _dialogWindowCurrent;}}
         public bool HasDialogWindowCurrent { get { return DialogWindowCurrent != null;}}
-        private VisualElement _content;
+
         
         //  Fields ----------------------------------------
         private DialogWindowBase _dialogWindowCurrent;
 
         //  Initialization --------------------------------
-        public void Initialize()
-        {
-            this.
-            _content = this.Q("Content");
-            Debug.Log("_content1: " + _content);
-        }
-
 
         //  Methods ---------------------------------------
         
         public void ShowDialogWindow(DialogWindowBase dialogWindow)
         {
             HideDialogWindow();
+            style.visibility = new StyleEnum<Visibility>(Visibility.Visible);
             _dialogWindowCurrent = dialogWindow;
-            Debug.Log("_content2: " + _content);
-            _content.Add(new DialogWindowBase());
+            _dialogWindowCurrent.OnHideRequested.AddListener(OnHideRequested);
+            AddFor(dialogWindow ,Content);
+            OnShowDialogWindow.Invoke(this);
         }
-        
+
+        private void OnHideRequested(DialogWindowBase arg0)
+        {
+            Debug.Log("hide");
+            HideDialogWindow();
+        }
+
         public void HideDialogWindow()
         {
+            style.visibility = new StyleEnum<Visibility>(Visibility.Hidden);
             if (_dialogWindowCurrent != null)
             {
-                _content.Remove(_dialogWindowCurrent);
+                RemoveFor(_dialogWindowCurrent, Content);
+                OnHideDialogWindow.Invoke(this);
                 _dialogWindowCurrent = null;
             }
         }
 
 
         //  Event Handlers --------------------------------
+        protected override void OnAddedInternal (VisualElement child)
+        {
+            base.OnAddedInternal(child);
+            
+            //Do something?
+            Debug.Log("OnAddedInternal() system " + child);
+        }
+        
+        protected override void OnRemovedInternal (VisualElement child)
+        {
+            base.OnRemovedInternal(child);
+            
+            //Do something?
+            Debug.Log("OnRemoved() system " + child);
+        }
  
     }
 }

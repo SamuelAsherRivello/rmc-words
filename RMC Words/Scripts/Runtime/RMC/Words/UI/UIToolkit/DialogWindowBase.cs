@@ -1,15 +1,22 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace RMC.Words.UI.UIToolkit
 {
     /// <summary>
-    /// 
+    /// Create the parent class of any WINDOW to be attached at runtime.
+    /// Ideally the contents are added separately (child class?, tbd)
     /// </summary>
-    public class DialogWindowBase : VisualElement
+    public class DialogWindowBase : CustomVisualElement
     {
         //  Internal Classes ----------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        public class DialogWindowUnityEvent : UnityEvent<DialogWindowBase>{}
 
+        
         /// <summary>
         /// 
         /// </summary>
@@ -18,7 +25,7 @@ namespace RMC.Words.UI.UIToolkit
         /// <summary>
         /// 
         /// </summary>
-        public new class UxmlFactory : UxmlFactory<DialogWindowBase, UxmlTraits>
+        public new class UxmlFactory: UxmlFactory<DialogWindowBase, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
             {
@@ -27,7 +34,11 @@ namespace RMC.Words.UI.UIToolkit
                 visualTreeAsset.CloneTree(rootVisualElement);
 
                 DialogWindowBase dialogWindowBase = rootVisualElement.Q<DialogWindowBase>();
-                dialogWindowBase.Show();
+                
+                //////////////////////////////////////////
+                // Initialize - Is this only at edit-time?
+                //////////////////////////////////////////
+                dialogWindowBase.Initialize();
                 
                 return rootVisualElement;
             }
@@ -36,44 +47,65 @@ namespace RMC.Words.UI.UIToolkit
 
 
         //  Events ----------------------------------------
-
+        public readonly DialogWindowUnityEvent OnHideRequested = new DialogWindowUnityEvent();
 
         //  Properties ------------------------------------
-
+        public override VisualElement contentContainer => _contentContainer;
 
         //  Fields ----------------------------------------
-
+        private VisualElement _contentContainer;
 
         //  Initialization --------------------------------
         public DialogWindowBase()
         {
             VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("Uxml/DialogWindowBaseLayout");
             visualTreeAsset.CloneTree(this);
-            Show();
+            
+            ////////////////////////////////////////
+            // Initialize - Is this only at runtime?
+            ////////////////////////////////////////
+            Initialize();
+        }
+
+        public override void Initialize()
+        {
+            if (!IsInitialized)
+            {
+                base.Initialize();
+                
+                DialogWindowBase dialogWindowBase = this.Q<DialogWindowBase>();
+                dialogWindowBase.style.flexGrow = new StyleFloat(1);
+                dialogWindowBase.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
+                dialogWindowBase.RegisterCallback<ClickEvent>(OnClickEvent);
+
+                _contentContainer = dialogWindowBase.Q("ContentContainer");
+            }
         }
 
         //  Methods ---------------------------------------
-        
-        public void Show()
-        {
-            DialogWindowBase dialogWindowBase = this.Q<DialogWindowBase>();
-            dialogWindowBase.style.flexGrow = new StyleFloat(1);
-            dialogWindowBase.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
-            
-            dialogWindowBase.RegisterCallback<ClickEvent>(OnClickEvent);
-        }
-
-        public void Hide()
-        {
-            this.parent.Remove(this);
-        }
 
 
         //  Event Handlers --------------------------------
+        protected override void OnAddedInternal(VisualElement child)
+        {
+            base.OnAddedInternal(child);
+            
+            //Do something?
+            Debug.Log("base OnAddedInternal child " + child);
+        }
+
+        protected override void OnRemovedInternal (VisualElement child)
+        {
+            base.OnRemovedInternal(child);
+            
+            //Do something?
+            Debug.Log("base OnRemovedInternal child " + child);
+        }
+        
         private void OnClickEvent(ClickEvent evt)
         {
-            Hide();
+            Debug.Log("yes");
+            OnHideRequested.Invoke(this);
         }
- 
     }
 }

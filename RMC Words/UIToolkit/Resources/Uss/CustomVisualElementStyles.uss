@@ -1,0 +1,10 @@
+
+.OnAdded {
+    transition-duration: 0.25s;
+    opacity: 1;
+}
+
+.OnRemoved {
+    transition-duration: 0.25s;
+    opacity: 0;
+}
