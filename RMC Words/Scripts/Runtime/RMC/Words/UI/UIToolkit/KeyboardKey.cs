@@ -154,6 +154,7 @@ namespace RMC.Words.UI.UIToolkit
         public KeyCode KeyCode { get; set; }
         private readonly Label _label;
         private readonly VisualElement _content;
+        
         private StyleColor _backgroundColor;
         private StyleColor _backgroundColorInitial;
         
