@@ -14,19 +14,21 @@ namespace RMC.Words.UI.UIToolkit
         public KeyCode KeyCode { get; private set; }
         public string LabelText { get; private set; }
         
-        public Color? BackgroundColor { get; private set; }
+        public Color? BackgroundImageTintColor { get; private set; }
         
         public KeyboardKeyData(KeyCode keyCode)
         {
             KeyCode = keyCode;
             LabelText = KeyCode.ToString().ToUpper();
-            BackgroundColor = null;
+            
+            Color white = Color.white;
+            BackgroundImageTintColor = white;
         }
-        public KeyboardKeyData(KeyCode keyCode, string labelText, Color backgroundColor)
+        public KeyboardKeyData(KeyCode keyCode, string labelText, Color backgroundImageTintColor)
         {
             KeyCode = keyCode;
             LabelText = labelText;
-            BackgroundColor = backgroundColor;
+            BackgroundImageTintColor = backgroundImageTintColor;
         }
     }
     
@@ -133,18 +135,18 @@ namespace RMC.Words.UI.UIToolkit
             } 
         }
         
-        public StyleColor BackgroundColor  
+        public StyleColor BackgroundImageTintColor  
         {
             get
             {
-                return _backgroundColor;
+                return _backgroundImageTintColor;
             }
             set
             {
-                _backgroundColor = value;
+                _backgroundImageTintColor = value;
                 if (_content != null)
                 {
-                    _content.style.backgroundColor = _backgroundColor;
+                    _content.style.unityBackgroundImageTintColor = _backgroundImageTintColor;
                 }
             } 
         }
@@ -155,8 +157,8 @@ namespace RMC.Words.UI.UIToolkit
         private readonly Label _label;
         private readonly VisualElement _content;
         
-        private StyleColor _backgroundColor;
-        private StyleColor _backgroundColorInitial;
+        private StyleColor _backgroundImageTintColor;
+        private StyleColor _backgroundImageTintColorInitial;
         
         //  Initialization --------------------------------
         public KeyboardKey()
@@ -175,8 +177,8 @@ namespace RMC.Words.UI.UIToolkit
             //Store initial value
             StyleColor s = new StyleColor();
             s.value = Color.grey;
-            //_backgroundColorInitial = BackgroundColor;
-            _backgroundColorInitial = s;
+            //_backgroundImageTintColorInitial = BackgroundImageTintColor;
+            _backgroundImageTintColorInitial = s;
             
             //TODO: Do we like my idea that EVERY UI Component has "Content" as first child? Yes?
             VisualElement content = this.Q<VisualElement>("Content");
@@ -202,17 +204,17 @@ namespace RMC.Words.UI.UIToolkit
                 _content.style.display = DisplayStyle.Flex;
             }
 
-            if (keyboardKeyData.BackgroundColor.HasValue)
+            if (keyboardKeyData.BackgroundImageTintColor.HasValue)
             {
                 //Use color
                 StyleColor styleColor = new StyleColor();
-                styleColor.value = keyboardKeyData.BackgroundColor.Value;
-                BackgroundColor = styleColor;
+                styleColor.value = keyboardKeyData.BackgroundImageTintColor.Value;
+                BackgroundImageTintColor = styleColor;
             }
             else
             {
                 //Fallback color
-                BackgroundColor = _backgroundColorInitial;
+                BackgroundImageTintColor = _backgroundImageTintColorInitial;
             }
         }
         
