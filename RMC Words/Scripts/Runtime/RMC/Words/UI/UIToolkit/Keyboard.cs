@@ -129,9 +129,13 @@ namespace RMC.Words.UI.UIToolkit
 
         private void InputSystem_OnTextInput(char character)
         {
-
-            KeyCode typedKeyCode = KeyCode.None;
+            if (!UnityEngine.InputSystem.Keyboard.current.wasUpdatedThisFrame)
+            {
+                //Needed to slow down repeated keys or not?
+                return;
+            }
             
+            KeyCode typedKeyCode = KeyCode.None;
             
             //Is it a single letter (NOT punctuation?
             if (WordsHelper.IsASingleLetter(character.ToString()))
@@ -140,6 +144,7 @@ namespace RMC.Words.UI.UIToolkit
             }
             else
             {
+         
                 //Is it a special key that we care about?
                 if (UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)
                 {
