@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using RMC_Words.Scripts.Runtime.RMC.Utilities;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace RMC.Words.UI.UIToolkit
@@ -58,12 +61,21 @@ namespace RMC.Words.UI.UIToolkit
             {
                 keyboardKey.ResetKey();
                 
+                //Mouse
                 //TODO: Can I bubble up the key event to the game without trapping+passing here?
-                keyboardKey.OnKeyboardKeyPressed.RemoveAllListeners();
-                keyboardKey.OnKeyboardKeyPressed.AddListener(keyboardKeyVisualElement => 
-                {
-                    OnKeyboardKeyPressed.Invoke(keyboardKey);
-                });
+                keyboardKey.OnKeyboardKeyPressed.RemoveListener(KeyboardKey_KeyboardKeyPressed);
+                keyboardKey.OnKeyboardKeyPressed.AddListener(KeyboardKey_KeyboardKeyPressed);
+                
+                //Typing
+                UnityEngine.InputSystem.Keyboard.current.onTextInput -= InputSystem_OnTextInput;
+                UnityEngine.InputSystem.Keyboard.current.onTextInput += InputSystem_OnTextInput;
+                
+
+                
+                // ; += c =>
+                // {
+                //     Debug.Log("that was : " + c);
+                // };
             }
 
             //TODO: What's a better way to support multi-region layouts or game-specific layouts (pass in custom class?)
@@ -99,7 +111,7 @@ namespace RMC.Words.UI.UIToolkit
                 red.a = 0.5f;
                 Color green = Color.green;
                 green.a = 0.5f;
-                keyboardKeys[20].PopulateKey(new KeyboardKeyData(KeyCode.Delete, "Delete", red ));
+                keyboardKeys[20].PopulateKey(new KeyboardKeyData(KeyCode.Backspace, "Delete", red ));
                 keyboardKeys[21].PopulateKey(new KeyboardKeyData(KeyCode.Z)); 
                 keyboardKeys[22].PopulateKey(new KeyboardKeyData(KeyCode.X)); 
                 keyboardKeys[23].PopulateKey(new KeyboardKeyData(KeyCode.C)); 
@@ -107,13 +119,65 @@ namespace RMC.Words.UI.UIToolkit
                 keyboardKeys[25].PopulateKey(new KeyboardKeyData(KeyCode.B)); 
                 keyboardKeys[26].PopulateKey(new KeyboardKeyData(KeyCode.N)); 
                 keyboardKeys[27].PopulateKey(new KeyboardKeyData(KeyCode.M));
-                keyboardKeys[28].PopulateKey(new KeyboardKeyData(KeyCode.KeypadEnter, "Enter", green));
-                keyboardKeys[29].PopulateKey(new KeyboardKeyData(KeyCode.None)); 
+                keyboardKeys[28].PopulateKey(new KeyboardKeyData(KeyCode.Return, "Enter", green));
+                keyboardKeys[29].PopulateKey(new KeyboardKeyData(KeyCode.None));
+
+
             }
 
         }
 
+        private void InputSystem_OnTextInput(char character)
+        {
+
+            KeyCode typedKeyCode = KeyCode.None;
+            
+            
+            //Is it a single letter (NOT punctuation?
+            if (WordsHelper.IsASingleLetter(character.ToString()))
+            {
+                typedKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), character.ToString(), true);
+            }
+            else
+            {
+                //Is it a special key that we care about?
+                if (UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)
+                {
+                    typedKeyCode = KeyCode.Return;
+                }
+                
+                //Is it a special key that we care about?
+                if (UnityEngine.InputSystem.Keyboard.current.backspaceKey.wasPressedThisFrame)
+                {
+                    typedKeyCode = KeyCode.Backspace;
+                }
+            }
+
+
+            if (typedKeyCode != KeyCode.None)
+            {
+                // Lookup which, if any, onscreen keys are a match
+                UQueryBuilder<KeyboardKey> uQueryBuilder = this.Query<KeyboardKey>();
+                List<KeyboardKey> keyboardKeys = uQueryBuilder.ToList();
+            
+                foreach (KeyboardKey keyboardKey in keyboardKeys)
+                {
+                    if (keyboardKey.KeyCode == typedKeyCode)
+                    {
+                        //TODO: Maybe make this a separate event?
+                        //TODO: Maybe make typing events optional with a bool
+                        OnKeyboardKeyPressed.Invoke(keyboardKey);
+                        return;
+                    }
+                }   
+            }
+        }
+
+
         //  Event Handlers --------------------------------
- 
+        private void KeyboardKey_KeyboardKeyPressed(KeyboardKey keyboardKey)
+        {
+            OnKeyboardKeyPressed.Invoke(keyboardKey);
+        }
     }
 }
