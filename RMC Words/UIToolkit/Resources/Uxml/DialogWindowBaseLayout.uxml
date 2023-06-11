@@ -1,9 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Packages/com.rmc.rmc-words/RMC%20Words/UIToolkit/Resources/Uss/DialogWindowBaseStyles.uss?fileID=7433441132597879392&amp;guid=1a59007275f20fb46a36f5ca4f56e770&amp;type=3#DialogWindowBaseStyles" />
-    <Style src="project://database/Packages/com.rmc.rmc-words/RMC%20Words/UIToolkit/Resources/Uss/CustomVisualElementStyles.uss?fileID=7433441132597879301&amp;guid=1ddcf425a8b7413f86eea0dd2fb2220f&amp;type=3#CustomVisualElementStyles" />
-
+    <Style src="project://database/Packages/com.rmc.rmc-words/RMC%20Words/UIToolkit/Resources/Uss/CustomVisualElementStyles.uss?fileID=7433441132597879392&amp;guid=1ddcf425a8b7413f86eea0dd2fb2220f&amp;type=3#CustomVisualElementStyles" />
     <ui:VisualElement name="Content" class="Content">
-        <ui:VisualElement name="Window" class="Window">
+        <ui:VisualElement name="Window" class="Window" style="margin-bottom: 50%; margin-top: 10%;">
             <ui:VisualElement name="ContentContainer" class="ContentContainer" />
         </ui:VisualElement>
     </ui:VisualElement>
