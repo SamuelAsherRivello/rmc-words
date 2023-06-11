@@ -1,0 +1,89 @@
+﻿
+using System.Linq;
+using RMC.Words.Extensions;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
+
+namespace RMC.Words.UI.UIToolkit
+{
+    //  Namespace Properties ------------------------------
+
+    //  Class Attributes ----------------------------------
+    public class CustomTransitionUnityEvent : UnityEvent<CustomTransition>{}
+    /// <summary>
+    /// Replace with comments...
+    /// </summary>
+    public class CustomTransition
+    {
+        //  Events ----------------------------------------
+        public readonly CustomTransitionUnityEvent OnTransitionEndEvent = new CustomTransitionUnityEvent();
+        public readonly CustomTransitionUnityEvent OnTransitionStartEvent = new CustomTransitionUnityEvent();
+        
+
+        //  Properties ------------------------------------
+        public VisualElement TargetVisualElement
+        {
+            get { return _targetVisualElement; }
+        }
+        
+        public string FromClassName
+        {
+            get { return _fromClassName; }
+        }
+
+        public string ToClassName
+        {
+            get { return _toClassName; }
+        }
+
+
+        //  Fields ----------------------------------------
+        private string _samplePublicText;
+        private readonly VisualElement _targetVisualElement;
+        private readonly string _fromClassName;
+        private readonly string _toClassName;
+
+        //  Initialization --------------------------------
+        public CustomTransition(VisualElement visualElement, string fromClassName, string toClassName)
+        {
+            _targetVisualElement = visualElement;
+            _fromClassName = fromClassName;
+            _toClassName = toClassName;
+            
+            visualElement.RegisterCallback<TransitionStartEvent>((evt) =>
+            {
+                if (evt.currentTarget == TargetVisualElement)
+                {
+                    OnTransitionStartEvent.Invoke(this);
+                }
+            
+            });
+            visualElement.RegisterCallback<TransitionEndEvent>((evt) =>
+            {
+                if (evt.currentTarget == TargetVisualElement)
+                {
+                    Debug.Log("end!!! for " + evt.currentTarget + " and " + TargetVisualElement);
+                    OnTransitionEndEvent.Invoke(this);
+                }
+            });
+        }
+
+
+        //  Methods ---------------------------------------
+        public void Start()
+        {
+            TargetVisualElement.RemoveFromClassList(FromClassName);
+            TargetVisualElement.AddToClassList(ToClassName);
+            Debug.Log($"AddToClassList (from {FromClassName}, to {ToClassName}) on {TargetVisualElement}");
+        }
+        
+        //  Event Handlers --------------------------------
+        public void Target_OnCompleted(string message)
+        {
+
+        }
+
+
+    }
+}

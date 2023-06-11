@@ -51,9 +51,11 @@ namespace RMC.Words.UI.UIToolkit
 
         //  Properties ------------------------------------
         public override VisualElement contentContainer => _contentContainer;
+        public VisualElement Window { get { return _window;} }
 
         //  Fields ----------------------------------------
         private VisualElement _contentContainer;
+        private VisualElement _window;
 
         //  Initialization --------------------------------
         public DialogWindowBase()
@@ -77,7 +79,9 @@ namespace RMC.Words.UI.UIToolkit
                 dialogWindowBase.style.flexGrow = new StyleFloat(1);
                 dialogWindowBase.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
                 dialogWindowBase.RegisterCallback<ClickEvent>(OnClickEvent);
-
+                
+                //
+                _window = dialogWindowBase.Q("Window");
                 _contentContainer = dialogWindowBase.Q("ContentContainer");
             }
         }
@@ -86,22 +90,6 @@ namespace RMC.Words.UI.UIToolkit
 
 
         //  Event Handlers --------------------------------
-        protected override void OnAddedInternal(VisualElement child)
-        {
-            base.OnAddedInternal(child);
-            
-            //Do something?
-            Debug.Log("base OnAddedInternal child " + child);
-        }
-
-        protected override void OnRemovedInternal (VisualElement child)
-        {
-            base.OnRemovedInternal(child);
-            
-            //Do something?
-            Debug.Log("base OnRemovedInternal child " + child);
-        }
-        
         private void OnClickEvent(ClickEvent evt)
         {
             Debug.Log("yes");

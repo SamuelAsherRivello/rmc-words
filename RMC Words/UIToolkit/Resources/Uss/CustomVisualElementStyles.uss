@@ -1,10 +1,22 @@
-
-.OnAdded {
+.TransitionOpacity_100 {
     transition-duration: 0.25s;
     opacity: 1;
+    scale: 1 1;
 }
 
-.OnRemoved {
+.TransitionOpacity_000 {
     transition-duration: 0.25s;
     opacity: 0;
+    scale: 1 1;
+}
+
+.TransitionScale_080 {
+    opacity: 0;
+    scale: 0.8 0.8;
+}
+
+.TransitionScale_100 {
+    transition-duration: 0s;
+    opacity: 0;
+    scale: 0.8 0.8;
 }

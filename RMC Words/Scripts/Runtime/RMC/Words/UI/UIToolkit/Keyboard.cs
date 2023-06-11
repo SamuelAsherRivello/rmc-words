@@ -67,15 +67,12 @@ namespace RMC.Words.UI.UIToolkit
                 keyboardKey.OnKeyboardKeyPressed.AddListener(KeyboardKey_KeyboardKeyPressed);
                 
                 //Typing
-                UnityEngine.InputSystem.Keyboard.current.onTextInput -= InputSystem_OnTextInput;
-                UnityEngine.InputSystem.Keyboard.current.onTextInput += InputSystem_OnTextInput;
-                
-
-                
-                // ; += c =>
-                // {
-                //     Debug.Log("that was : " + c);
-                // };
+                if (UnityEngine.InputSystem.Keyboard.current != null)
+                {
+                    UnityEngine.InputSystem.Keyboard.current.onTextInput -= InputSystem_OnTextInput;
+                    UnityEngine.InputSystem.Keyboard.current.onTextInput += InputSystem_OnTextInput;
+                }
+  
             }
 
             //TODO: What's a better way to support multi-region layouts or game-specific layouts (pass in custom class?)
@@ -107,6 +104,7 @@ namespace RMC.Words.UI.UIToolkit
                 keyboardKeys[19].PopulateKey(new KeyboardKeyData(KeyCode.None)); 
 
                 //Row 3
+                
                 Color red = Color.red;
                 red.a = 0.5f;
                 Color green = Color.green;

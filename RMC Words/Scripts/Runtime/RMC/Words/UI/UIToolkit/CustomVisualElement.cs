@@ -60,31 +60,6 @@ namespace RMC.Words.UI.UIToolkit
             OnRemovedInternal(child);
         }
         
-        public void AddFor(VisualElement child, VisualElement parentVisualElement)
-        {
-                       
-            //TODO: I tried to animate as something is added.
-            //Does not work. But RemoveFor works great.
-            //Perhaps it is because transitions ONLY happen AFTER something is added?
-            parentVisualElement.Add(child);
-        }
-        
-        public void RemoveFor (VisualElement child, VisualElement parentVisualElement)
-        {
-      
-            Debug.Log("-----RemoveFor1 " + child);
-
-            //OneShot - Use the event then unregister
-            EventCallback<TransitionEndEvent> onTransitionEndEvent = (e) =>
-            {
-                Debug.Log("-----RemoveFor2, end " + child);
-                parentVisualElement.Remove(child);
-                OnRemovedInternal(child);
-            };
-            child.RegisterCallbackOneShot(onTransitionEndEvent);
-            child.AddToClassList("OnRemoved");
-        }
-
 
         //  Event Handlers --------------------------------
         protected virtual void OnAddedInternal (VisualElement child)

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -52,13 +53,27 @@ namespace RMC.Words.UI.UIToolkit
 
         //  Methods ---------------------------------------
         
-        public void ShowDialogWindow(DialogWindowBase dialogWindow)
+        public async void ShowDialogWindow(DialogWindowBase dialogWindow)
         {
             HideDialogWindow();
             style.visibility = new StyleEnum<Visibility>(Visibility.Visible);
             _dialogWindowCurrent = dialogWindow;
             _dialogWindowCurrent.OnHideRequested.AddListener(OnHideRequested);
-            AddFor(dialogWindow ,Content);
+            
+            // ADD IT
+            Content.Add(_dialogWindowCurrent);
+
+            // SHOW TRANSITION FOR ADDING IT
+            CustomTransition opacityTransition = new CustomTransition(_dialogWindowCurrent.Window, 
+                "TransitionOpacity_000", "TransitionOpacity_100");
+            opacityTransition.OnTransitionEndEvent.AddListener((t) =>
+            {
+                //TODO: Why does this not work?
+                Debug.Log($"OnTransitionEndEvent() add for {t.TargetVisualElement}");
+            });
+            
+            opacityTransition.Start();
+       
             OnShowDialogWindow.Invoke(this);
         }
 
@@ -73,9 +88,26 @@ namespace RMC.Words.UI.UIToolkit
             style.visibility = new StyleEnum<Visibility>(Visibility.Hidden);
             if (_dialogWindowCurrent != null)
             {
-                RemoveFor(_dialogWindowCurrent, Content);
-                OnHideDialogWindow.Invoke(this);
-                _dialogWindowCurrent = null;
+                // SHOW TRANSITION FOR REMOVING IT
+                CustomTransition scaleTransition = new CustomTransition(this, 
+                    "TransitionSc2ale_100", "Trans2itionScale_080");
+                scaleTransition.OnTransitionEndEvent.AddListener((t) =>
+                {
+                    // REMOVE IT
+                    Debug.Log($"OnTransitionEndEvent() rem for {t.TargetVisualElement}");
+                    Content.Remove(_dialogWindowCurrent);
+                    OnHideDialogWindow.Invoke(this);
+                    _dialogWindowCurrent = null;
+                });
+                
+                // SHOW TRANSITION FOR REMOVING IT
+                CustomTransition opacityTransition = new CustomTransition(_dialogWindowCurrent.Content, 
+                    "TransitionOpacity_100", "TransitionOpacity_000");
+                opacityTransition.Start();
+                //scaleTransition.Start();
+                
+     
+         
             }
         }
 
@@ -98,5 +130,7 @@ namespace RMC.Words.UI.UIToolkit
         }
  
     }
+
+
 }
        
