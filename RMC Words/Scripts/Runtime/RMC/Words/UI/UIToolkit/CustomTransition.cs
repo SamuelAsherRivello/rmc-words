@@ -50,8 +50,22 @@ namespace RMC.Words.UI.UIToolkit
             _targetVisualElement = visualElement;
             _fromClassName = fromClassName;
             _toClassName = toClassName;
-            
-            visualElement.RegisterCallback<TransitionStartEvent>((evt) =>
+            RegisterCallback();
+
+        }
+        
+        public CustomTransition(VisualElement visualElement, string toClassName)
+        {
+            _targetVisualElement = visualElement;
+            _fromClassName = string.Empty;
+            _toClassName = toClassName;
+            RegisterCallback();
+        }
+
+        private void RegisterCallback()
+        {
+                        
+            _targetVisualElement.RegisterCallback<TransitionStartEvent>((evt) =>
             {
                 if (evt.currentTarget == TargetVisualElement)
                 {
@@ -59,7 +73,7 @@ namespace RMC.Words.UI.UIToolkit
                 }
             
             });
-            visualElement.RegisterCallback<TransitionEndEvent>((evt) =>
+            _targetVisualElement.RegisterCallback<TransitionEndEvent>((evt) =>
             {
                 if (evt.currentTarget == TargetVisualElement)
                 {
@@ -73,17 +87,21 @@ namespace RMC.Words.UI.UIToolkit
         //  Methods ---------------------------------------
         public void Start()
         {
-            TargetVisualElement.RemoveFromClassList(FromClassName);
+            if (!string.IsNullOrEmpty(FromClassName))
+            {
+                TargetVisualElement.RemoveFromClassList(FromClassName); 
+                
+                Debug.Log($"AddToClassList (from {FromClassName}, to {ToClassName}) on {TargetVisualElement}");
+
+            }
+            else
+            {
+                Debug.Log($"AddToClassList (to {ToClassName}) on {TargetVisualElement}");
+            }
+          
             TargetVisualElement.AddToClassList(ToClassName);
-            Debug.Log($"AddToClassList (from {FromClassName}, to {ToClassName}) on {TargetVisualElement}");
         }
         
         //  Event Handlers --------------------------------
-        public void Target_OnCompleted(string message)
-        {
-
-        }
-
-
     }
 }
