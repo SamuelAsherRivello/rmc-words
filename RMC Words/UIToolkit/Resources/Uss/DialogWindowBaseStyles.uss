@@ -63,5 +63,5 @@
     flex-wrap: nowrap;
     white-space: normal;
     font-size: 50px;
-    -unity-font-definition: url('project://database/Assets/Samples2/Wordle/3rdParty/Unity/UI%20Toolkit%20Random%20Assets/UI%20Toolkit%20Random%20Assets/Fonts/AnderHedge/Ander%20Hedge%20SDF.asset?fileID=11400000&guid=9dd12e20c35064d4d92166ba5426d06a&type=2#Ander Hedge SDF');
+    -unity-font-definition: url('project://database/Assets/Samples2/Wordle/Art/Fonts/karnak/karnakpro-condensedblack%20SDF.asset?fileID=11400000&guid=3ff9cb00f35ec1740a02f9b7068208cd&type=2#karnakpro-condensedblack SDF');
 }
