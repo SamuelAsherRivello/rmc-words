@@ -1,7 +1,4 @@
-﻿
-using System.Linq;
-using RMC.Words.Extensions;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
@@ -77,7 +74,6 @@ namespace RMC.Words.UI.UIToolkit
             {
                 if (evt.currentTarget == TargetVisualElement)
                 {
-                    Debug.Log("end!!! for " + evt.currentTarget + " and " + TargetVisualElement);
                     OnTransitionEndEvent.Invoke(this);
                 }
             });

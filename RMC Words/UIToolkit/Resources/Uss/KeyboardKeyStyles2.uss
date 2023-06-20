@@ -1,0 +1,21 @@
+.Content {
+    flex-grow: 1;
+    background-color: rgb(58, 58, 58);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: url('project://database/Assets/Samples2/Wordle/3rdParty/Kenny/basic_kenney_ui-pack/basic_kenney_ui-pack/basic_PNG/basic_grey_button08.png?fileID=21300000&guid=6a930834a5aa34647ad87374f17fdbce&type=3#basic_grey_button08');
+}
+
+.Label {
+    -unity-text-align: middle-center;
+    font-size: 45px;
+    -unity-font: url('project://database/Assets/Samples2/Wordle/3rdParty/Unity/UI%20Toolkit%20Random%20Assets/UI%20Toolkit%20Random%20Assets/Fonts/AnderHedge/Ander%20Hedge.ttf?fileID=12800000&guid=a12968f3b45ddc449b0fb5aeaecf3039&type=3#Ander Hedge');
+    color: rgba(0, 0, 0, 0.78);
+    -unity-text-outline-color: rgba(0, 0, 0, 0.39);
+    -unity-text-outline-width: 0;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.39);
+    flex-grow: 1;
+    -unity-font-definition: url('project://database/Assets/Samples2/Wordle/Art/Fonts/karnak/karnakpro-condensedblack%20SDF.asset?fileID=11400000&guid=3ff9cb00f35ec1740a02f9b7068208cd&type=2#karnakpro-condensedblack SDF');
+}

@@ -93,8 +93,8 @@ namespace RMC.Words.UI.UIToolkit
                     "TransitionSc2ale_100", "Trans2itionScale_080");
                 scaleTransition.OnTransitionEndEvent.AddListener((t) =>
                 {
+                    Debug.Log("_dialogWindowCurrent: " + _dialogWindowCurrent);
                     // REMOVE IT
-                    Debug.Log($"OnTransitionEndEvent() rem for {t.TargetVisualElement}");
                     Content.Remove(_dialogWindowCurrent);
                     OnHideDialogWindow.Invoke(this);
                     _dialogWindowCurrent = null;
